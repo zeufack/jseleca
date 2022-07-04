@@ -25,3 +25,6 @@ replay_pid*
 
 # Vs code file 
 .vscode
+
+# target folder
+target/
