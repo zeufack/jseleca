@@ -2,8 +2,10 @@ package com.jseleca;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
@@ -17,14 +19,18 @@ import org.testng.annotations.Parameters;
         "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
 })
 class TestRunner extends AbstractTestNGCucumberTests {
+    /**
+     * Log.
+     */
+    private static final Logger LOG = LoggerFactory.getLogger(TestRunner.class);
 
     /**
      * Setup.
      */
-    @Parameters("browser")
-    @BeforeSuite
-    public void beforeSuite(@Optional() String browser) {
-        System.out.println("useing browser" + browser);
+    @Parameters({ "browser" })
+    @BeforeClass
+    public void beforeSuite(@Optional("chrome") String browser) {
+        LOG.info("using browser  " + browser);
     }
 
     /**
