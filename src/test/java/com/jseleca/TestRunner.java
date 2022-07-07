@@ -1,13 +1,16 @@
 package com.jseleca;
 
+import com.jseleca.drivers.DriverFactory;
+import com.jseleca.drivers.Drivers;
+import com.jseleca.drivers.browser.Browser;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+
+import static com.jseleca.utils.Properties.ENV_PROPERTIES;
 
 /**
  * Global test runner.
@@ -27,10 +30,11 @@ class TestRunner extends AbstractTestNGCucumberTests {
     /**
      * Setup.
      */
-    @Parameters({ "browser" })
-    @BeforeClass
-    public void beforeSuite(@Optional("chrome") String browser) {
-        LOG.info("using browser  " + browser);
+    @BeforeClass()
+    public void beforeSuite() {
+        Browser browser = DriverFactory.getDriver(Drivers.valueOf(ENV_PROPERTIES.getBrowserName().toUpperCase()));
+        LOG.info("using browser " + ENV_PROPERTIES.getBrowserName().toUpperCase());
+
     }
 
     /**
@@ -39,4 +43,5 @@ class TestRunner extends AbstractTestNGCucumberTests {
     @AfterSuite
     public void afterSuite() {
     }
+
 }

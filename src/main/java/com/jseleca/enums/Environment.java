@@ -8,11 +8,11 @@ public enum Environment {
      * Local Environment, using the webdriver implementation provide for the
      * browser.
      */
-    local,
+    LOCAL,
 
     /**
      * Remote Enviroment, for scaling test (selenium hub or browserstack).
      */
-    remote
+    REMOTE
 
 }

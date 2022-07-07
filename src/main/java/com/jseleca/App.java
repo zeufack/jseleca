@@ -1,6 +1,6 @@
 package com.jseleca;
 
-import com.jseleca.properties.ReadDriverLocation;
+import com.jseleca.properties.EnvProperties;
 
 /**
  * Hello world!
@@ -14,7 +14,7 @@ public final class App {
      */
     public static void main(String[] args) {
 
-        ReadDriverLocation driverLocations = ReadDriverLocation.getInstance();
-        System.out.println(driverLocations.getGeckoDriverPath());
+        EnvProperties envProperties = EnvProperties.getInstance();
+        System.out.println(envProperties.getBrowserName());
     }
 }
